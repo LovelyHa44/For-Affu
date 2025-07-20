@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Surprise For My Affu 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      font-family: 'Indie Flower', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .step {
+      background-color: #111;
+      border: 2px dashed #ff69b4;
+      padding: 40px 50px;
+      border-radius: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 22px;
+      color: #ffd1dc;
+      box-shadow: 0 0 20px #ff69b4aa;
+      position: absolute;
+      max-width: 80%;
+      opacity: 0;
+      transform: scale(0.8);
+      animation: fadeIn 0.5s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .heart {
+      font-size: 30px;
+      animation: beat 1s infinite;
+      color: #ff1493;
+      margin-top: 15px;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    /* 💗 Heart Rain */
+    .heart-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart-rain span {
+      position: absolute;
+      color: #ff69b4;
+      animation: fall 4s linear infinite;
+      font-size: 24px;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Step Messages -->
+  <div class="step" id="step1" onclick="nextStep(1)">
+    🎁 Tap to Open Your Surprise, Affu 💝
+  </div>
+
+  <div class="step" id="step2" onclick="nextStep(2)" style="display:none">
+    ✨ You’re not just my best friend...<br> You're my constant, my heart 💖
+  </div>
+
+  <div class="step" id="step3" onclick="nextStep(3)" style="display:none">
+    Thank you for being you... always!<br> I’ll never stop loving you as my bestie 💌
+  </div>
+
+  <div class="step" id="step4" style="display:none">
+    💗 Forever & Always, Affu 🌸<br><div class="heart">💗</div>
+  </div>
+
+  <!-- 💗 Heart Rain Container -->
+  <div class="heart-rain" id="heartRain"></div>
+
+  <script>
+    function nextStep(current) {
+      // Hide current step
+      document.getElementById(`step${current}`).style.display = "none";
+
+      // Show next step
+      const next = document.getElementById(`step${current + 1}`);
+      if (next) {
+        next.style.display = "block";
+      }
+
+      // If final step, start heart rain
+      if (current === 3) {
+        const heartContainer = document.getElementById("heartRain");
+        for (let i = 0; i < 40; i++) {
+          let heart = document.createElement("span");
+          heart.innerHTML = "💗";
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+          heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+          heart.style.animationDelay = (Math.random() * 3) + "s";
+          heartContainer.appendChild(heart);
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
